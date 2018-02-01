@@ -14,10 +14,9 @@ function App() {
       <p className="App-intro">
         To get started, edit <code>src/App.tsx</code> and save to reload.
       </p>
-      <Hello name="TypeScript" />
+      <Hello name="TypeScript!!" />
     </div>
   );
 }
 
 export default App;
-
