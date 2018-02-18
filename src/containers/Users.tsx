@@ -1,37 +1,22 @@
 import * as React from 'react';
-import { UserComp } from '../components/User';
+import { connect, Dispatch } from 'react-redux';
 
-export interface User {
-  username: string;
-  id: number;
-  isAdmin: boolean;
+import { Users } from '../components/Users';
+import * as actions from '../actions/';
+import { IUser } from '../types';
+import { IStoreState } from '../types/index';
+
+export function mapStateToProps({ users }: IStoreState) {
+  return {
+    users
+  };
 }
 
-interface LocalState {
-  usersList: User[];
+export function mapDispatchToProps(dispatch: Dispatch<actions.UserAction>) {
+  return {
+    onAddUser: () => dispatch(actions.addUser()),
+    onDeleteUser: () => dispatch(actions.deleteUser())
+  };
 }
 
-class Users extends React.Component<{}, LocalState> {
-    state = {
-        usersList: [
-          {username: 'xx1', id: 1, isAdmin: false},
-          {username: 'xx2', id: 2, isAdmin: false},
-          {username: 'xx3', id: 3, isAdmin: false}, 
-          {username: 'xx4', id: 4, isAdmin: false},
-          {username: 'xx5', id: 5, isAdmin: true}
-        ]
-    };
-    handleClick (ev: Event) {
-      console.log('handleClick', ev);
-    }
-    render() {
-      return (
-        <div>
-          {this.state.usersList.map((userInfo: User) => (
-            <UserComp {...userInfo}  key={userInfo.id} onChange={() => this.handleClick}/>
-          ))}
-        </div>
-      );
-    }
-  }
-export default Users;
+export default connect(mapStateToProps, mapDispatchToProps)(Users);

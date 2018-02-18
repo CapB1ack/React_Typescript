@@ -1,15 +1,15 @@
+import { UserAction } from '../actions';
+import { IStoreState } from '../types/index';
+import { ADD_USER, DELETE_USER } from '../constants/index';
 
-import { EnthusiasmAction } from '../actions';
-import { StoreState } from '../types/index';
-import { INCREMENT_ENTHUSIASM, DECREMENT_ENTHUSIASM } from '../constants/index';
-
-export function enthusiasm(state: StoreState, action: EnthusiasmAction): StoreState {
+export const reducerUsers = (state: IStoreState, action: UserAction): IStoreState => {
   switch (action.type) {
-    case INCREMENT_ENTHUSIASM:
-      return { ...state, enthusiasmLevel: state.enthusiasmLevel + 1 };
-    case DECREMENT_ENTHUSIASM:
-      return { ...state, enthusiasmLevel: Math.max(1, state.enthusiasmLevel - 1) };
+    case ADD_USER:
+      const users = [...state.users, {username: 'xx10', id: 10, isAdmin: false}];
+      return { ...state, users };
+    case DELETE_USER:
+      return { ...state, users: [] };
     default:
       return state;
   }
-}
+};

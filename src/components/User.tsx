@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-import { User } from '../containers/Users';
 import './User.css';
+import { IUser } from '../types';
 
-interface UserComponent extends User {
+interface IUserComponent extends IUser {
     onChange: Function;
 }
 
-export const UserComp: React.SFC<UserComponent> = (props) => {
+export const UserComp: React.SFC<IUserComponent> = (props) => {
     return (
     <div className="user" onClick={props.onChange()}>
         {props.username} -- {props.id} -- {props.isAdmin}

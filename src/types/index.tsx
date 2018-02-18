@@ -1,5 +1,9 @@
+export interface IUser {
+    username: string;
+    id: number;
+    isAdmin: boolean;
+}
 
-export interface StoreState {
-    languageName: string;
-    enthusiasmLevel: number;
+export interface IStoreState {
+    users: IUser[];
 }

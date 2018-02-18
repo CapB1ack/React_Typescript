@@ -4,3 +4,9 @@ export type INCREMENT_ENTHUSIASM = typeof INCREMENT_ENTHUSIASM;
 
 export const DECREMENT_ENTHUSIASM = 'DECREMENT_ENTHUSIASM';
 export type DECREMENT_ENTHUSIASM = typeof DECREMENT_ENTHUSIASM;
+
+export const ADD_USER = 'ADD_USER';
+export type ADD_USER = typeof ADD_USER;
+
+export const DELETE_USER = 'DELETE_USER';
+export type DELETE_USER = typeof DELETE_USER;
