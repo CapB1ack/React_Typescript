@@ -11,11 +11,11 @@ import './index.css';
 
 const store = createStore<IStoreState>(reducerUsers, {
   users: [
-    {username: 'xx1', id: 1, isAdmin: false},
-    {username: 'xx2', id: 2, isAdmin: false},
-    {username: 'xx3', id: 3, isAdmin: false}, 
-    {username: 'xx4', id: 4, isAdmin: false},
-    {username: 'xx5', id: 5, isAdmin: true}
+    {username: 'xx1', id: 0, isAdmin: false},
+    {username: 'xx2', id: 1, isAdmin: false},
+    {username: 'xx3', id: 2, isAdmin: false}, 
+    {username: 'xx4', id: 3, isAdmin: false},
+    {username: 'xx5', id: 4, isAdmin: true}
   ]
 });
 

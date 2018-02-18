@@ -11,19 +11,34 @@ interface IUsers {
     onAddUser: () => void;
     onDeleteUser: () => void;
 }
+interface ILocalState {
+    selected: number;
+}
 
-const handleClick = () => {
-    console.log('zzz');
-};
+class Users extends React.Component<any, ILocalState> {
+    constructor(props: IUsers) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+        this.state = {
+            selected: 0
+        };
+    }
 
-export const Users = ({users, onAddUser, onDeleteUser}: IUsers) => {
-    return (
-        <div>
-            <button onClick={onAddUser}>Add user</button>
-            <button onClick={onDeleteUser}>Delete</button>
-            {users.map((userInfo: IUser) => (
-                <UserComp {...userInfo}  key={userInfo.id} onChange={() => handleClick}/>
-            ))}
-        </div>
-    );
-};
+    handleClick (id: number) {
+        this.setState({selected: id});
+    }
+
+    render () {
+        return (
+                <div>
+                    <button onClick={this.props.onAddUser}>Add user</button>
+                    <button onClick={this.props.onDeleteUser}>Delete</button>
+                    <div>Selected: {this.state.selected}</div>
+                    {this.props.users.map((userInfo: IUser, index: number) => (
+                        <UserComp elemIsSelected={this.state.selected === index} {...userInfo} key={userInfo.id} onChange={(id: number) => this.handleClick(id)} />
+                    ))}
+                </div>
+        );
+    }
+}
+export { Users };
