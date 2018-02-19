@@ -29,9 +29,10 @@ export interface IaddUser {
 
 export interface IdeleteUser {
     type: constants.DELETE_USER;
+    id: number; 
 }
 
 export type UserAction = IaddUser | IdeleteUser;
 
 export const addUser = (): IaddUser => ({type: constants.ADD_USER});
-export const deleteUser = (): IdeleteUser => ({type: constants.DELETE_USER});
+export const deleteUser = (id: number): IdeleteUser => ({type: constants.DELETE_USER, id});

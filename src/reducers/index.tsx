@@ -9,7 +9,7 @@ export const reducerUsers = (state: IStoreState, action: UserAction): IStoreStat
       const users = [...state.users, {username: 'newUser', id: nextIndex + 1, isAdmin: false}];
       return { ...state, users };
     case DELETE_USER:
-      return { ...state, users: [] };
+      return { ...state, users: state.users.filter(el => el.id !== action.id) };
     default:
       return state;
   }

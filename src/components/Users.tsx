@@ -13,29 +13,40 @@ interface IUsers {
 }
 interface ILocalState {
     selected: number;
+    inputValue: string;
 }
 
 class Users extends React.Component<any, ILocalState> {
-    constructor(props: IUsers) {
-        super(props);
-        this.handleClick = this.handleClick.bind(this);
-        this.state = {
-            selected: 0
-        };
-    }
+    state = {
+        selected: 0,
+        inputValue: ''
+    };
 
-    handleClick (id: number) {
+    handleUserSelect (id: number) {
         this.setState({selected: id});
+    }
+    handleUserDelete (id: number) {
+        this.props.onDeleteUser(id);
+    }
+    handleInputChange(event: any) {
+        console.log(event.target.value);
+        this.setState({inputValue: event.target.value});
     }
 
     render () {
         return (
                 <div>
                     <button onClick={this.props.onAddUser}>Add user</button>
-                    <button onClick={this.props.onDeleteUser}>Delete</button>
+                    <input type="text" onChange={this.handleInputChange} value={this.state.inputValue}/>
                     <div>Selected: {this.state.selected}</div>
-                    {this.props.users.map((userInfo: IUser, index: number) => (
-                        <UserComp elemIsSelected={this.state.selected === index} {...userInfo} key={userInfo.id} onChange={(id: number) => this.handleClick(id)} />
+                    {this.props.users.map((userInfo: IUser) => (
+                        <UserComp 
+                            elemIsSelected={this.state.selected === userInfo.id}
+                            {...userInfo}
+                            key={userInfo.id}
+                            onDeleteUser={(id: number) => this.handleUserDelete(id)}
+                            onUserSelect={(id: number) => this.handleUserSelect(id)} 
+                        />
                     ))}
                 </div>
         );

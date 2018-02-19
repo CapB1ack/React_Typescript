@@ -7,7 +7,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
+
+.user:hover {
+    box-shadow: 0 0 5px rgba(0,0,0,.5);
+}
+
 .user--selected {
     background: green;
+}
+
+.user--remove {
+    border: 1px solid red;
+    border-radius: .3rem;
+    background-color: palevioletred;
+    cursor: pointer;
+}
+
+.user--remove:hover {
+    background-color: red;
 }
