@@ -25,14 +25,20 @@ import * as constants from '../constants';
 
 export interface IaddUser {
     type: constants.ADD_USER;
+    username: string;
 }
 
 export interface IdeleteUser {
     type: constants.DELETE_USER;
     id: number; 
 }
+export interface ItoggleAdmin {
+    type: constants.TOGGLE_ADMIN;
+    id: number; 
+}
 
-export type UserAction = IaddUser | IdeleteUser;
+export type UserAction = IaddUser | IdeleteUser | ItoggleAdmin;
 
-export const addUser = (): IaddUser => ({type: constants.ADD_USER});
+export const addUser = (username: string): IaddUser => ({type: constants.ADD_USER, username});
 export const deleteUser = (id: number): IdeleteUser => ({type: constants.DELETE_USER, id});
+export const toggleAdmin = (id: number): ItoggleAdmin => ({type: constants.TOGGLE_ADMIN, id});

@@ -14,8 +14,9 @@ export function mapStateToProps({ users }: IStoreState) {
 
 export function mapDispatchToProps(dispatch: Dispatch<actions.UserAction>) {
   return {
-    onAddUser: () => dispatch(actions.addUser()),
-    onDeleteUser: (id: number) => dispatch(actions.deleteUser(id))
+    onAddUser: (username: string) => dispatch(actions.addUser(username)),
+    onDeleteUser: (id: number) => dispatch(actions.deleteUser(id)),
+    onToggleAdmin: (id: number) => dispatch(actions.toggleAdmin(id))
   };
 }
 

@@ -10,3 +10,6 @@ export type ADD_USER = typeof ADD_USER;
 
 export const DELETE_USER = 'DELETE_USER';
 export type DELETE_USER = typeof DELETE_USER;
+
+export const TOGGLE_ADMIN = 'TOGGLE_ADMIN';
+export type TOGGLE_ADMIN = typeof TOGGLE_ADMIN;

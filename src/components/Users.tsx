@@ -10,6 +10,7 @@ interface IUsers {
     users: IUser[];
     onAddUser: () => void;
     onDeleteUser: () => void;
+    onToggleAdmin: () => void;
 }
 interface ILocalState {
     selected: number;
@@ -21,6 +22,7 @@ class Users extends React.Component<any, ILocalState> {
         selected: 0,
         inputValue: ''
     };
+    textInput: HTMLInputElement | null;
 
     handleUserSelect (id: number) {
         this.setState({selected: id});
@@ -29,15 +31,25 @@ class Users extends React.Component<any, ILocalState> {
         this.props.onDeleteUser(id);
     }
     handleInputChange(event: any) {
-        console.log(event.target.value);
         this.setState({inputValue: event.target.value});
+    }
+    handleToggleAdmin(id: number) {
+        this.props.onToggleAdmin(id);
+    }
+    componentDidMount () {
+        if (this.textInput) { this.textInput.focus(); }
     }
 
     render () {
         return (
                 <div>
-                    <button onClick={this.props.onAddUser}>Add user</button>
-                    <input type="text" onChange={this.handleInputChange} value={this.state.inputValue}/>
+                    <button onClick={() => this.props.onAddUser(this.state.inputValue)}>Add user</button>
+                    <input 
+                        type="text"
+                        onChange={e => this.handleInputChange(e)}
+                        value={this.state.inputValue}
+                        ref={inp => this.textInput = inp}
+                    />
                     <div>Selected: {this.state.selected}</div>
                     {this.props.users.map((userInfo: IUser) => (
                         <UserComp 
@@ -45,6 +57,7 @@ class Users extends React.Component<any, ILocalState> {
                             {...userInfo}
                             key={userInfo.id}
                             onDeleteUser={(id: number) => this.handleUserDelete(id)}
+                            toggleIsAdmin={(id: number) => this.handleToggleAdmin(id)}
                             onUserSelect={(id: number) => this.handleUserSelect(id)} 
                         />
                     ))}
