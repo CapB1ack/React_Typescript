@@ -38,9 +38,6 @@ class Users extends React.Component<any, ILocalState> {
     }
     componentDidMount () {
         if (this.textInput) { this.textInput.focus(); }
-        fetch('https://jsonplaceholder.typicode.com/posts/1')
-            .then(response => response.json())
-            .then(json => console.log(json));
     }
 
     render () {

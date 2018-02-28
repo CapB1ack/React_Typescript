@@ -13,3 +13,9 @@ export type DELETE_USER = typeof DELETE_USER;
 
 export const TOGGLE_ADMIN = 'TOGGLE_ADMIN';
 export type TOGGLE_ADMIN = typeof TOGGLE_ADMIN;
+
+export const LOADED_USERS = 'LOADED_USERS';
+export type LOADED_USERS = typeof LOADED_USERS;
+
+export const FETCH_USERS = 'FETCH_USERS';
+export type FETCH_USERS = typeof FETCH_USERS;
